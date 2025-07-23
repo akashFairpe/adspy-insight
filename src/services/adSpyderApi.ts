@@ -10,13 +10,17 @@ export interface AdData {
   id: number;
   title: string;
   platform: string;
-  image: string;
+  image?: string; // Optional for text ads
   duration: string;
   date: string;
   engagement: string;
   views: string;
   clicks: string;
   ctr: string;
+  adType: 'image' | 'text'; // New field to distinguish ad types
+  headline?: string; // For text ads
+  description?: string; // For text ads
+  displayUrl?: string; // For text ads
 }
 
 export interface SearchResponse {
@@ -26,7 +30,7 @@ export interface SearchResponse {
   totalPages: number;
 }
 
-export const searchAds = async (query: string, page: number = 1): Promise<SearchResponse> => {
+export const searchAds = async (query: string, page: number = 1, adType?: 'image' | 'text' | 'all'): Promise<SearchResponse> => {
   try {
     // TODO: Replace with your actual API call
     const response = await fetch(`${API_BASE_URL}/search`, {
@@ -38,7 +42,8 @@ export const searchAds = async (query: string, page: number = 1): Promise<Search
       body: JSON.stringify({
         query,
         page,
-        limit: 12
+        limit: 12,
+        adType: adType || 'all' // Include ad type in API request
       })
     });
 
@@ -60,12 +65,12 @@ export const useSearchApi = () => {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<SearchResponse | null>(null);
 
-  const search = async (query: string, page: number = 1) => {
+  const search = async (query: string, page: number = 1, adType?: 'image' | 'text' | 'all') => {
     setLoading(true);
     setError(null);
     
     try {
-      const result = await searchAds(query, page);
+      const result = await searchAds(query, page, adType);
       setData(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Search failed');
