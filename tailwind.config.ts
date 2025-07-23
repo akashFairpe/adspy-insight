@@ -52,6 +52,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Custom AdSpyder colors
+				navy: 'hsl(var(--navy))',
+				blue: 'hsl(var(--blue))',
+				'light-bg': 'hsl(var(--light-bg))',
+				highlight: 'hsl(var(--highlight))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
