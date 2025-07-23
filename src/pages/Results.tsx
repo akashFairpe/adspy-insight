@@ -27,8 +27,8 @@ const sampleAds = [
   },
   {
     id: 2,
-    title: "VideoCapture Elite",
-    platform: "YouTube",
+    title: "VideoCapture Elite", 
+    platform: "Google Ads",
     image: adVideoCapture1,
     duration: "15 Days", 
     date: "Nov 2023",
@@ -52,7 +52,7 @@ const sampleAds = [
   {
     id: 4,
     title: "EditPro Capture",
-    platform: "Instagram",
+    platform: "Google Ads", 
     image: adVideoEditor1,
     duration: "18 Days",
     date: "Dec 2023", 
@@ -91,14 +91,8 @@ const Results = () => {
   const getPlatformBadgeColor = (platform: string) => {
     const colors: Record<string, string> = {
       "Facebook": "bg-blue-500",
-      "YouTube": "bg-red-500", 
-      "Instagram": "bg-pink-500",
-      "LinkedIn": "bg-blue-600",
-      "TikTok": "bg-black",
-      "Google Ads": "bg-green-500",
-      "Twitter": "bg-sky-500",
-      "Pinterest": "bg-red-600",
-      "Snapchat": "bg-yellow-500"
+      "LinkedIn": "bg-blue-600", 
+      "Google Ads": "bg-green-500"
     };
     return colors[platform] || "bg-gray-500";
   };
@@ -116,7 +110,7 @@ const Results = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask anything about ads..."
+                placeholder="Search for ads..."
                 className="pl-10 pr-12"
               />
               <Button
